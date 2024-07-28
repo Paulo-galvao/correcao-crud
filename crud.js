@@ -1,18 +1,19 @@
 const prompt = require("prompt-sync")();
 const thisYear = new Date().getFullYear();
 
-const alunos = [{
-    'nomeAluno': "Edson",
-    'dataNascimento': 1988,
-    'curso': "dev",
-    'periodo': "noite",
-    },
-    {
-    'nomeAluno': "Aluno 1",
-    'dataNascimento': 2010,
-    'curso': "dev",
-    'periodo': "noite",
-    }];
+// const alunos = [{
+//     'nomeAluno': "Edson",
+//     'dataNascimento': 1988,
+//     'curso': "dev",
+//     'periodo': "noite",
+//     },
+//     {
+//     'nomeAluno': "Aluno 1",
+//     'dataNascimento': 2010,
+//     'curso': "dev",
+//     'periodo': "noite",
+//     }];
+const alunos = []
 
 const modelo = () => {
     const nomeAluno = prompt("Nome do aluno: ");
@@ -65,31 +66,39 @@ Período: ${aluno.periodo}
 };
 
 const remover = () => {
-    const indice = parseInt(prompt("Qual indice você deseja remover? "), 10) - 1;
-    if(indice < alunos.length && indice > 0) {
-        alunos.splice(indice, 1);
-        console.log("Aluno removido com sucesso");
+    if(alunos.length == 0) {
+        console.log("Não possuímos nenhum aluno cadastrado!");
     } else {
-        console.log("Índice não encontrado!");
+        let indice = parseInt(prompt("Qual indice você deseja remover? "), 10);
+        if(indice <= 0 || indice > alunos.length) {
+            console.log("Indice não encontrado!");
+        } else {
+            indice--;
+            alunos.splice(indice, 1);
+            console.log("Aluno removido com sucesso!");
+        }
     }
 };
 
 const atualizar = () => {
-    const indice = parseInt(prompt("Qual o indice que deseja atualizar? "), 10) - 1;
-    if(indice < alunos.length && indice > 0) {
-        let aluno = modelo();
-    
-        if (aluno !== undefined) {
-            alunos[indice] = aluno;
-            console.log("Aluno atualizado com sucesso");
-            
-        } else {
-            console.log("Falha na atualização");
-        }
-
+    if(alunos.length == 0) {
+        console.log("Não possuímos nenhum aluno cadastrado!");
     } else {
-        console.log("índice não encontrado!");
+        if(alunos.length == 0) {
+            console.log("Não possuímos nenhum aluno cadastrado!");
+        } else {
+            let indice = parseInt(prompt("Qual o indice que deseja atualizar? "), 10);
+            if(indice <= 0 || indice > alunos.length) {
+                console.log("índice não encontrado!");
+            } else {
+                indice--;
+                let aluno = modelo();
+                alunos[indice] = aluno;
+                console.log("Aluno atualizado com sucesso");
+            }
+        }
     }
+    
 };
 
 const mostrarMaioridade = () => {
@@ -103,10 +112,21 @@ const mostrarMaioridade = () => {
         }
     })
 
-    console.log("Lista de alunos maiores de idade:");
-    alunosMaiores.forEach(aluno => console.log(aluno.nomeAluno))
-    console.log("Lista de alunos menores de idade:");
-    alunosMenores.forEach(aluno => console.log(aluno.nomeAluno))
+    if(alunosMaiores.length == 0) {
+        console.log("Nenhum aluno maior de idade cadastrado");
+    } else {
+        console.log("Lista de alunos maiores de idade:");
+        alunosMaiores.forEach(aluno => console.log(aluno.nomeAluno))
+
+    }
+
+    if(alunosMenores.length == 0) {
+        console.log("Nenhum aluno menor de idade cadastrado");
+    } else {
+        console.log("Lista de alunos menores de idade:");
+        alunosMenores.forEach(aluno => console.log(aluno.nomeAluno));
+    }
+
 }
 
 module.exports = {

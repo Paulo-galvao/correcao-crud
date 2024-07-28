@@ -20,22 +20,14 @@ while(true) {
             break;
         case "3":
             listar();
-            if(alunos.length > 0) {
-                atualizar();
-            }
+            atualizar();
             break;
         case "4":
             listar();
-            if(alunos.length > 0) {
-                remover();
-            }
+            remover();
             break;
         case "5":
-            if(alunos.length > 0) {
-                mostrarMaioridade();
-            } else {
-                console.log("Não possuímos nenhum cadastro ainda! ");
-            }
+            mostrarMaioridade();
             break;
         case "0":
             console.log("Ok, até mais!");
